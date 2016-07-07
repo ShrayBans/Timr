@@ -20,7 +20,7 @@ $(document).ready(function(){
 	//adds a site if url is true (on enter)
 	$('#siteInput').bind("enterKey",function(e){
 		// SC.stream('/tracks/293').then(function(player){
-  // 			player.play();
+  		// 	player.play();
 		// });
 
 		var webInput = $(this).val();
@@ -114,27 +114,4 @@ function reopenTabs(urlArray){
 
 	chrome.tabs.create({url: urlArray[i] } , function(){console.log("added" + urlArray[i])});
 	}
-	// chrome.storage.local.set({'storage':{} })
 }
-
-// function save(str){
-// 	chrome.storage.local.set({"urls": })
-// }
-
-// function load() {
-//     var channels = "";
-//     var keywords = "";
-//     chrome.storage.local.get('channels', function (result) {
-//         channels = result.channels;
-//         alert(result.channels);
-//         $("#channels").val(channels);
-//     });
-
-
-//     chrome.storage.local.get('keywords', function (result) {
-//         keywords = result.keywords;
-//         alert(result.keywords);
-//         $("#keywords").val(keywords);
-//     });
-
-// } 
