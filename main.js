@@ -16,6 +16,7 @@ $(document).ready(function(){
 		if(isURL(webInput)===true){
 			webInput = webInput.replace(/^www+\./, "");
 			storeArr.push(webInput);
+			$('#timerButton').attr("disabled", false);
 			//if it is, append to container
 	   		$('#siteContainer').append("<div class='enteredSite' align='center'>"+webInput+"</div>");
 
@@ -34,11 +35,6 @@ $(document).ready(function(){
 
 	$('#timerButton').on('click', function(){
 		closeTabs(storeArr);
-	});
-
-	$('#timerButton').on('dblclick', function(){
-		msg = Object.keys(idUrlPairs)
-		reopenTabs(msg);
 	});
 	
 });

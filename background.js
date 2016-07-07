@@ -44,9 +44,13 @@ function setTimer(tMillis) {
   endTime.setMinutes(endTime.getMinutes() + mins);
   endTime.setSeconds(endTime.getSeconds() + secs);
   endTime.setMilliseconds(endTime.getMilliseconds() + millis);
-
+  
+  var msg = Object.keys(idUrlPairs);
   currentTime = new Date();   // finds current time
-  timeout = setTimeout(console.log('openPageFunction'), endTime.getTime() - currentTime.getTime()); // runs main function after set time has passed
+  timeout = setTimeout(function(){
+    reopenTabs(msg);
+    console.log("RUN");
+  }, endTime.getTime() - currentTime.getTime()); // runs main function after set time has passed
   toBreak = setTimeout(setBreak, endTime.getTime() - currentTime.getTime());  // immediately after, starts break timer
 
   setInterval(function() {
