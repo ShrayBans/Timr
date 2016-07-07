@@ -4,14 +4,19 @@
    "version": "1.0",
    "manifest_version": 2,
 
+   "background": {
+     "scripts": ["background.js"],
+     "persistent": true
+   },
+
    "browser_action": {
       "default_icon": "icon.png",
       "default_title": "Functional Pomodoro Timer",
       "default_popup":"popup.html"
       },
 
-     "permissions": [ "tabs", "storage", "webRequest" ]
+     "permissions": [ "tabs", "storage", "webRequest", "background", "webRequestBlocking" ]
 
- 
+
 
 }
