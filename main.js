@@ -17,8 +17,12 @@ $(document).ready(function(){
 	});
 
 
-	//adds a site if url is true
+	//adds a site if url is true (on enter)
 	$('#siteInput').bind("enterKey",function(e){
+		SC.stream('/tracks/293').then(function(player){
+  			player.play();
+		});
+
 		var webInput = $(this).val();
 		// check if it is a url and 
 		if(isURL(webInput)===true){
@@ -50,6 +54,10 @@ $(document).ready(function(){
 
 	$('#timerButton').on('click', function(){
 		closeTabs(storeArr);
+		var sound = new Howl({
+		  	urls: ['spring-weather-1.mp3'],
+		  	loop: true
+		}).play();
 	});
 	
 });
