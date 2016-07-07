@@ -121,5 +121,6 @@ function resumeTimer() {
 function reset() {
     clearTimeout(refreshDisplayTimeout);
     turnOff();
+    hide("modify");
     show("timerButton");
 }
