@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .addEventListener('click', function() {
           if (settingsShown === false) showSettings();
           else hideSettings();
-        })
+        });
 });
 
 function show(section) {
