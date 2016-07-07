@@ -1,7 +1,5 @@
 // sets functionality of timer
 
-// html id = 'timerbutton'
-
 var timeout;
 var countdown;
 var breaktime;
@@ -9,7 +7,17 @@ var endTime;
 var endBreak;
 var pauseTime;
 var currentTime;
-var working;
+working = null;
+
+undisable = function(section) {
+    document.getElementById(section)
+        .disabled = "false";
+}
+
+disable = function(section) {
+    document.getElementById(section)
+        .disabled = "true";
+}
 
 var guiLagAdjustment = 500;
 
@@ -23,7 +31,7 @@ function startTimer(tMillis) {
 //  takes break time given, run break timer function on it, and starts break timer
 function startBreak(bMillis) {
   breaktime = bMillis;
-  setBreak(breaktime);
+  setBreak(bMillis + guiLagAdjustment);
 }
 
 // sets work timer from given millisecond time, and when run it setTimeouts two functions
@@ -44,13 +52,14 @@ function setTimer(tMillis) {
   endTime.setMinutes(endTime.getMinutes() + mins);
   endTime.setSeconds(endTime.getSeconds() + secs);
   endTime.setMilliseconds(endTime.getMilliseconds() + millis);
-  
+
   currentTime = new Date();   // finds current time
-  timeout = setTimeout(function(){
-    reopenTabs(Object.keys(idUrlPairs));
-    // console.log("RUN");
-  }, endTime.getTime() - currentTime.getTime()); // runs main function after set time has passed
-  toBreak = setTimeout(function(){setBreak(20000)}, endTime.getTime() - currentTime.getTime());  // immediately after, starts break timer
+  timeout = setTimeout(function() {
+    // reopenTabs(Object.keys(idUrlPairs));
+    hide("timerButton");
+    show("breakButton");
+   }, endTime.getTime() - currentTime.getTime()); // runs main function after set time has passed
+  // immediately after, starts break timer
 
   setInterval(function() {
         chrome.browserAction.setBadgeText({
@@ -79,17 +88,30 @@ function setBreak(bMillis) {
   endBreak.setMilliseconds(endBreak.getMilliseconds() + millis);
 
   currentTime = new Date();
-  timeout = setTimeout(console.log('closePageFunction'), endBreak.getTime() - currentTime.getTime()); // runs main function after set time has passed
-  toWork = setTimeout(function(){setTimer(tMillis)}, endBreak.getTime() - currentTime.getTime());  // immediately after, starts work timer
+  timeout = setTimeout(function() {
+    closeTabs(storeArr);
+    hide("breakButton");
+    show("timerButton");
+  }, endBreak.getTime() - currentTime.getTime()); // runs main function after set time has passed
+  // immediately after, starts work timer
+
+  setInterval(function() {
+        chrome.browserAction.setBadgeText({
+            text: getTimeLeftString()
+        });
+    }, 1000);
+
 }
+
 
 function pause() {
   pauseTime = new Date();
   clearTimeout(timeout);
 }
 
+// TODO: RESUME FUNCTION ISNT RESUMING CORRECTLY...SAY WHAT??
 function resume() {
-  var timeRemaining = (endTime.getTime() - pauseTime.getTime());
+  var timeRemaining = endTime.getTime() - pauseTime.getTime();
   setTimer(timeRemaining);
 }
 
@@ -105,8 +127,9 @@ function turnOff() {
     endBreak = null;
     pauseTime = null;
     currentTime = null;
+    working = null;
     chrome.browserAction.setBadgeText({
-        text: ""
+        text: getTimeLeftString()
     });
 }
 
@@ -115,14 +138,17 @@ function getTimeLeft() {
         return (endTime.getTime() - pauseTime.getTime());
 
     var now = new Date();
-        return (endTime.getTime() - now.getTime());
+    if (working === true) return (endTime.getTime() - now.getTime());
+    else if (working === false) return (endBreak.getTime() - now.getTime());
 }
 
 function getTimeLeftPercent() {
-    return parseInt(getTimeLeft() / countdown * 100);
+  if (working ===  true) return parseInt(getTimeLeft() / countdown * 100);
+  else if (working === false) return parseInt(getTimeLeft() / breaktime * 100);
 }
 
 function getTimeLeftString() {
+    if (getTimeLeft() === undefined) return "";
     var until = getTimeLeft();
     var tSecs = parseInt(until / 1000);
     var tMins = parseInt(tSecs / 60);

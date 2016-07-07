@@ -6,9 +6,10 @@ $(document).ready(function(){
 		}
 	});
 
-	
+
 	idUrlPairs = {};
 	storeArr = [];
+	
 	chrome.storage.local.get("storage", function(data){
 		for (var i = 0; i < data.storage.length; i++) {
 			storeArr.push(data.storage[i]);
@@ -18,25 +19,25 @@ $(document).ready(function(){
 
 
 	//adds a site if url is true (on enter)
+
 	$('#siteInput').bind("enterKey",function(e){
 		// SC.stream('/tracks/293').then(function(player){
   		// 	player.play();
 		// });
 
 		var webInput = $(this).val();
-		// check if it is a url and 
+		// check if it is a url and
 		if(isURL(webInput)===true){
 			webInput = webInput.replace(/^www+\./, "");
 			storeArr.push(webInput);
 			chrome.storage.local.set({storage: storeArr});
-			
+
 			siteEnter(webInput);
    		}
    		else{
    			alert("Please enter valid url");
    		}
 	});
-
 
 	//when click xButton, it removes the entire div
 	$('body').on('click', '.xButton', function(){
@@ -59,7 +60,7 @@ $(document).ready(function(){
 		  	loop: true
 		}).play();
 	});
-	
+
 });
 
 
@@ -71,7 +72,7 @@ function siteEnter(webInput){
 	$('#siteContainer').append("<div class='enteredSite' align='center'><div class ='site' data-website="+webInput+">"+webInput+"</div></div>");
 	// console.log()
 	$('.enteredSite').append("<button class='xButton'>X</button>");
-	$('#siteInput').val('');	
+	$('#siteInput').val('');
 }
 
 function removeSite(array, input){
@@ -88,7 +89,7 @@ function isURL(str) {
 
 function closeTabs(storeArr){
 	//query all tabs
-	
+
 	chrome.tabs.query({}, function(tab){
 		//check through the tabs
 		for (var i = 0; i < tab.length; i++) {
@@ -103,6 +104,7 @@ function closeTabs(storeArr){
 
 		}
 	});
+
 
 }
 

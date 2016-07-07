@@ -40,14 +40,15 @@
 			margin-bottom: 10px;
 		}
 
-		#startBreak {
-			margin-bottom: 10px;
+		#breakButton {
 			width: 200px;
 			border: 3px solid red;
 			border-radius: 3px;
 			font-size: 15pt;
 			font-family: Futura;
 			font-weight: 500;
+			margin: auto;
+			margin-bottom: 10px;
 		}
 
 		#siteContainer {
@@ -130,7 +131,7 @@
 	<script type="text/javascript" src="howler.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="background.js"></script>
-	<script type="text/javascript" src="popup2.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
 	<link href="lib/bootstrap.min.css" rel="stylesheet" media="screen">
 	<!-- <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
 	<script>
@@ -148,14 +149,12 @@
 
 <div id="siteContainer">
 <input id="siteInput" type="text" value="">
-<!-- <button id="sendButton">Send</button> -->
-<!-- <br/> -->
 </div>
 
 
 <button id="timerButton" type="submit" align="center" disabled="true">Start Working!</button>
-<button id="startBreak" class="submit" align="center">Start Break!</button>
-				<div id="display" class="row-fluid">
+<button id="breakButton" class="submit" align="center">Start Break!</button>
+				<div id="display" class="row-fluid" style="width: 90%; margin: auto">
             <div class="span12">
                 <div class="progress progress-striped active progress-success progress-large">
                     <div class="bar" id="bar" style="width: 100%;"></div>
@@ -166,8 +165,8 @@
         <div id="modify" class="row-fluid">
             <div class="span12">
 								<button id="cancel" class="submit" align="center">Give Up</button>
-								<button id="resume" class="submit" align="center">Resume</button>
-								<button id="pause" class="submit" align="center">Pause</button>
+								<!-- <button id="resume" class="submit" align="center">Resume</button>
+								<button id="pause" class="submit" align="center">Pause</button> -->
             </div>
         </div>
 
