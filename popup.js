@@ -103,10 +103,11 @@ function startBreaking() {
   var num = 10;
 
   startBreak(num * 6000);
-  refreshDisplay();
+  // refreshDisplay();
   hide("settings");
   show("modify");
   show("display");
+  refreshDisplay();
 }
 
 function refreshDisplay() {
