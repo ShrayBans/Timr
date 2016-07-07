@@ -45,13 +45,12 @@ function setTimer(tMillis) {
   endTime.setSeconds(endTime.getSeconds() + secs);
   endTime.setMilliseconds(endTime.getMilliseconds() + millis);
   
-  var msg = Object.keys(idUrlPairs);
   currentTime = new Date();   // finds current time
   timeout = setTimeout(function(){
-    reopenTabs(msg);
-    console.log("RUN");
+    reopenTabs(Object.keys(idUrlPairs));
+    // console.log("RUN");
   }, endTime.getTime() - currentTime.getTime()); // runs main function after set time has passed
-  toBreak = setTimeout(setBreak, endTime.getTime() - currentTime.getTime());  // immediately after, starts break timer
+  toBreak = setTimeout(function(){setBreak(20000)}, endTime.getTime() - currentTime.getTime());  // immediately after, starts break timer
 
   setInterval(function() {
         chrome.browserAction.setBadgeText({
@@ -81,7 +80,7 @@ function setBreak(bMillis) {
 
   currentTime = new Date();
   timeout = setTimeout(console.log('closePageFunction'), endBreak.getTime() - currentTime.getTime()); // runs main function after set time has passed
-  toWork = setTimeout(setTimer, endBreak.getTime() - currentTime.getTime());  // immediately after, starts work timer
+  toWork = setTimeout(function(){setTimer(tMillis)}, endBreak.getTime() - currentTime.getTime());  // immediately after, starts work timer
 }
 
 function pause() {

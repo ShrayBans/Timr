@@ -66,7 +66,9 @@ function startWorking() {
     var num = getChoice();
 
     // set timer, hide settings, display reset button
-    startTimer(num * 60000);
+    startTimer(num * 10000);
+
+    //TODO: CHANGE THIS BACKKK@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     refreshDisplay();
 }
 
