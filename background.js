@@ -129,7 +129,7 @@ function turnOff() {
     currentTime = null;
     working = null;
     chrome.browserAction.setBadgeText({
-        text: ""
+        text: getTimeLeftString()
     });
 }
 
@@ -148,6 +148,7 @@ function getTimeLeftPercent() {
 }
 
 function getTimeLeftString() {
+    if (getTimeLeft() === undefined) return "";
     var until = getTimeLeft();
     var tSecs = parseInt(until / 1000);
     var tMins = parseInt(tSecs / 60);
