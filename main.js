@@ -19,9 +19,9 @@ $(document).ready(function(){
 
 	//adds a site if url is true (on enter)
 	$('#siteInput').bind("enterKey",function(e){
-		SC.stream('/tracks/293').then(function(player){
-  			player.play();
-		});
+		// SC.stream('/tracks/293').then(function(player){
+  // 			player.play();
+		// });
 
 		var webInput = $(this).val();
 		// check if it is a url and 
