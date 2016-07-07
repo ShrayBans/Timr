@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Opens Pomodoro Timer</title>
+	<style type="text/css">
+		#timer {
+			background-color: black;
+			height: 30px;
+			width: 150px;
+			border-radius: 5px;
+			border: solid red 2px;
+			color: red;
+			font-weight: bold;
+			font-size: 25px;
+			font-family: Verdana;
+			text-align: center;
+			margin: auto;
+			padding: 5px;
+		}
+
+		body {
+			text-align: center;
+			font-family: Impact;
+			font-size: 20pt;
+		}
+
+		button {
+			background-color: red;
+		}
+
+
+	</style>
+	<script type="text/javascript" src="popup.js"></script>
+</head>
+<body>
+
+<h3><center> Enter links of distracting sites below: </center></h3>
+
+<textarea rows = "5" cols = "80"></textarea>
+<br/>
+
+<button id = "siteButton" ctype="submit" align="center" style ="width: 500px;">Submit</button>
+<br/><br/>
+<button id ="timerButton" type="submit" align="center" style ="width: 500px;">Start Working!</button>
+<br/><br/>
+<div id="timer">
+	25:00
+</div>
+
+
+</body>
+</html>
