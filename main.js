@@ -6,13 +6,13 @@ $(document).ready(function(){
 		}
 	});
 
-	
+
 	idUrlPairs = {};
-	var storeArr = [];
+	storeArr = [];
 	//
 	$('#siteInput').bind("enterKey",function(e){
 		var webInput = $(this).val();
-		// check if it is a url and 
+		// check if it is a url and
 		if(isURL(webInput)===true){
 			webInput = webInput.replace(/^www+\./, "");
 			storeArr.push(webInput);
@@ -28,7 +28,7 @@ $(document).ready(function(){
    		}
 	});
 
-	//when click xButton, it closes the 
+	//when click xButton, it closes the
 	$('body').on('click', '.xButton', function(){
 		$(this).closest('div').remove();
 	});
@@ -36,7 +36,7 @@ $(document).ready(function(){
 	$('#timerButton').on('click', function(){
 		closeTabs(storeArr);
 	});
-	
+
 });
 
 function isURL(str) {
@@ -55,7 +55,7 @@ function parseSites(arr){
 
 function closeTabs(storeArr){
 	//query all tabs
-	
+
 	chrome.tabs.query({}, function(tab){
 		//check through the tabs
 		for (var i = 0; i < tab.length; i++) {
@@ -80,7 +80,7 @@ function closeTabs(storeArr){
 	//if match, find urls and put in an array
 	var urlArray;
 	//removes based on tabID array
-	
+
 }
 
 function reopenTabs(urlArray){
@@ -114,4 +114,4 @@ function reopenTabs(urlArray){
 //         $("#keywords").val(keywords);
 //     });
 
-// } 
+// }
