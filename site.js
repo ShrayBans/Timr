@@ -6,12 +6,12 @@
 //when start is pressed, ALL THE BELLOW
 
 //take all  and put into a variable urls
-var urls = [];
+// var urls = [];
 
-//close tabs of all urls
+// //close tabs of all urls
 
-//block all the urls
- chrome.webRequest.onBeforeRequest.addListener(
-        function(details) { return {cancel: true}; },
-        {urls: urls},
-        ["blocking"]);
+// //block all the urls
+//  chrome.webRequest.onBeforeRequest.addListener(
+//         function(details) { return {cancel: true}; },
+//         {urls: urls},
+//         ["blocking"]);

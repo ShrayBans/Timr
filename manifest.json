@@ -10,7 +10,12 @@
       "default_popup":"popup.html"
       },
 
-     "permissions": [ "tabs", "storage", "webRequest" ]
+     "permissions": [ "tabs", 
+      "storage", 
+      "webRequest",
+      "webRequestBlocking"
+       ]
+     
 
  
 

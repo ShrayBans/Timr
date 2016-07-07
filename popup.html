@@ -27,13 +27,38 @@
 		button {
 			background-color: red;
 		}
+		
+		#inputContainer{
+			margin:auto;
+			position: relative;
+		}
 
 		#siteInput {
+			/*position: absolute;*/
+			/*float: left;*/
+			right: 150px;
 			width: 200px;
 			border: 1px solid maroon;
 			border-radius: 2px;
+			/*margin-left: 30px;*/
+			margin-bottom: 10px;
 /*			float: left;
 			margin-left: 30px;*/
+		}
+
+		#sendButton {
+			margin-right: 30px;
+			float: right;
+			background-color: black;
+			border: 1px solid black;
+			color: white;
+			border-radius: 3px;
+			right: 20px;
+			height: 20px;
+			width: 60px;
+			text-align: center;
+			font-family: Avenir;
+			font-weight: 700;
 		}
 
 		#timerButton {
@@ -46,23 +71,27 @@
 		}
 
 		#siteContainer {
-			margin: -30px 0px 80px 0px;
+			margin: 0px 0px 80px 0px;
 			font-family: Garamond;
 			font-size: 14pt;
 			font-weight: 200;
 		}
 
 		.enteredSite {
+			margin-top: 50px;
 			border: 1px solid #E8EAF1;
 			border-radius: 3px;
 			background-color: #F5F7FC;
 			width: 300px;
 			margin: auto;
 			position: relative;
+			height: 25px;
+			line-height: 25px;
 		}
 
 		.xButton {
 			position: absolute;
+			top:2px;
 			background-color: brown;
 			border: 1px solid brown;
 			border-radius: 3px;
@@ -76,7 +105,7 @@
 
 
 	</style>
-	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script   src="jquery-2.2.4.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="site.js"></script>
 	<script type="text/javascript" src="timer.js"></script>
@@ -88,6 +117,8 @@
 
 <div id="siteContainer">
 <input id="siteInput" type="text" value="">
+<!-- <button id="sendButton">Send</button> -->
+<!-- <br/> -->
 </div>
 
 
