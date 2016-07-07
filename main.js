@@ -6,7 +6,7 @@ $(document).ready(function(){
 		if(isURL(webInput)===true){
 			//if it is, append to container
 	   		$('#siteContainer').append("<div class='enteredSite' align='center'>"+webInput+"</div>");
-	   		// $('.enteredSite').append('blah')
+	   		$('.enteredSite').append("<button class='xButton'>X</button>")
 	   		$(this).val('');
    		}
    		else{
@@ -20,14 +20,15 @@ $(document).ready(function(){
 	        $(this).trigger("enterKey");
 	    }
 	});
+
+
+	//when click xButton
+	$('body').on('click', '.xButton', function(){
+		$(this).closest('div').remove();
+	});
 });
 
 function isURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  var pattern = /(wwww\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   return pattern.test(str);
 }

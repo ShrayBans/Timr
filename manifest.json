@@ -10,7 +10,7 @@
       "default_popup":"popup.html"
       },
 
-     "permissions": [ "tabs", "bookmarks" ]
+     "permissions": [ "tabs", "storage", "webRequest" ]
 
  
 
