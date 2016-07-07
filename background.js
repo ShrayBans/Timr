@@ -7,7 +7,8 @@ var endTime;
 var endBreak;
 var pauseTime;
 var currentTime;
-working = null;
+var working = null;
+var timeDone = false;
 
 undisable = function(section) {
     document.getElementById(section)
@@ -58,6 +59,7 @@ function setTimer(tMillis) {
     // reopenTabs(Object.keys(idUrlPairs));
     hide("timerButton");
     show("breakButton");
+    timeDone = true;
    }, endTime.getTime() - currentTime.getTime()); // runs main function after set time has passed
   // immediately after, starts break timer
 
@@ -148,7 +150,7 @@ function getTimeLeftPercent() {
 }
 
 function getTimeLeftString() {
-    if (getTimeLeft() === undefined) return "";
+    if (getTimeLeft() === undefined || timeDone === true) return "";
     var until = getTimeLeft();
     var tSecs = parseInt(until / 1000);
     var tMins = parseInt(tSecs / 60);
