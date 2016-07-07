@@ -8,30 +8,45 @@ $(document).ready(function(){
 
 	
 	idUrlPairs = {};
-	var storeArr = [];
-	//
+	storeArr = [];
+	chrome.storage.local.get("storage", function(data){
+		for (var i = 0; i < data.storage.length; i++) {
+			storeArr.push(data.storage[i]);
+			siteEnter(data.storage[i]);
+		}
+	});
+
+
+	//adds a site if url is true
 	$('#siteInput').bind("enterKey",function(e){
 		var webInput = $(this).val();
 		// check if it is a url and 
 		if(isURL(webInput)===true){
 			webInput = webInput.replace(/^www+\./, "");
 			storeArr.push(webInput);
-			$('#timerButton').attr("disabled", false);
-			//if it is, append to container
-	   		$('#siteContainer').append("<div class='enteredSite' align='center'>"+webInput+"</div>");
-
-	   		$('.enteredSite').append("<button class='xButton'>X</button>");
-	   		$(this).val('');
+			chrome.storage.local.set({storage: storeArr});
+			
+			siteEnter(webInput);
    		}
    		else{
    			alert("Please enter valid url");
    		}
 	});
 
-	//when click xButton, it closes the 
+
+	//when click xButton, it removes the entire div
 	$('body').on('click', '.xButton', function(){
-		$(this).closest('div').remove();
+		var webURL = $(this).closest('.enteredSite').find('.site').data("website");
+		$(this).closest('.enteredSite').remove();
+
+
+		//removes the site from the array and stores it to local storage
+		removeSite(storeArr, webURL);
+		chrome.storage.local.set({storage: storeArr});
+		//resets back to disabled
+		if($('.enteredSite').length===0) $('#timerButton').attr("disabled", true);
 	});
+
 
 	$('#timerButton').on('click', function(){
 		closeTabs(storeArr);
@@ -39,18 +54,28 @@ $(document).ready(function(){
 	
 });
 
+
+
+
+function siteEnter(webInput){
+	$('#timerButton').attr("disabled", false);
+	//if it is, append to container
+	$('#siteContainer').append("<div class='enteredSite' align='center'><div class ='site' data-website="+webInput+">"+webInput+"</div></div>");
+	// console.log()
+	$('.enteredSite').append("<button class='xButton'>X</button>");
+	$('#siteInput').val('');	
+}
+
+function removeSite(array, input){
+	var index = array.indexOf(input);
+	if (index > -1) {
+    array.splice(index, 1);
+	}
+}
+
 function isURL(str) {
   var pattern = /(wwww\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   return pattern.test(str);
-}
-
-function parseSites(arr){
-	for (var i = 0; i < arr.length; i++) {
-		arr[i] = arr[i].replace(/www./, "")
-		arr[i] = arr[i].replace(/www./, "")
-		console.log(arr[i])
-	}
-	return arr;
 }
 
 function closeTabs(storeArr){
@@ -67,31 +92,21 @@ function closeTabs(storeArr){
 						break;
 					}
 			}
-			// if()
-			//add to an object
-			// idUrlPairs[tab[i].url] = tab[i].id;
+
 		}
 	});
 
-	// if(idUrlPairs[])
-
-	//if match, find tabID and put in an array
-	var tabIDArray;
-	//if match, find urls and put in an array
-	var urlArray;
-	//removes based on tabID array
-	
 }
 
 function reopenTabs(urlArray){
-	console.log(urlArray);
+	// console.log(urlArray);
 	//iterates through array and creates each
 	for(var i =0; i<urlArray.length ; i++){
-	console.log(urlArray[0]);
+	// console.log(urlArray[0]);
 
 	chrome.tabs.create({url: urlArray[i] } , function(){console.log("added" + urlArray[i])});
 	}
-
+	// chrome.storage.local.set({'storage':{} })
 }
 
 // function save(str){
