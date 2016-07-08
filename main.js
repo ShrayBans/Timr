@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
 	
 	//finds last checked and makes it current
 	chrome.storage.local.get("checked", function(data){
@@ -20,6 +21,7 @@ $(document).ready(function(){
 		}
 	});
 
+
 	$('#siteInput').keyup(function(e){
 		if(e.keyCode == 13){
 	        $(this).trigger("enterKey");
@@ -29,7 +31,7 @@ $(document).ready(function(){
 
 	idUrlPairs = {};
 	storeArr = [];
-	
+
 	chrome.storage.local.get("storage", function(data){
 		for (var i = 0; i < data.storage.length; i++) {
 			storeArr.push(data.storage[i]);

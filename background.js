@@ -72,6 +72,7 @@ function setTimer(tMillis) {
 
 // sets break timer from given millisecond time, and when run it setTimeouts two functions
 function setBreak(bMillis) {
+  timeDone = false;
   working = false;
   clearTimeout(timeout);
   pauseTime = null;
