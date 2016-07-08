@@ -50,10 +50,26 @@ function handleText(textNode)
 	textNode.nodeValue = v;
 }
 
-if ($('#checkbox').attr('checked', true)) {
-  cenafy();
-  walk(document.body);
-  setTimeout(function () {
-    walk(document.body);
-  }, 1000);
-}
+
+var check =[];
+chrome.storage.local.get("checked", function(data){
+		if(!data) check[0] = true;
+		else check.push(data.checked);
+		// console.log(data.checked)
+		// console.log("In Extensions: "+check[0]);
+
+		if (check[0]===true) {
+			$(document).ready(cenafy());
+		  walk(document.body);
+		  setTimeout(function () {
+		    walk(document.body);
+		  }, 1000);
+		}
+	});
+
+		
+	
+
+
+
+

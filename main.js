@@ -1,10 +1,8 @@
 $(document).ready(function(){
 
-
-	
 	//finds last checked and makes it current
 	chrome.storage.local.get("checked", function(data){
-		console.log(data.checked);
+		// console.log(data.checked);
 		$('#checkbox').prop('checked', data.checked);
 	});
 
@@ -14,10 +12,16 @@ $(document).ready(function(){
 		if($('#checkbox').prop('checked')===true) {
 			// $('#checkbox').attr('checked', false);
 			chrome.storage.local.set({checked: true});
+			chrome.storage.local.get("checked", function(data){
+				console.log(data.checked);
+			});
 		}
 		else {
 			// $('#checkbox').attr('checked', true);
 			chrome.storage.local.set({checked: false});
+			chrome.storage.local.get("checked", function(data){
+				console.log(data.checked);
+			});
 		}
 	});
 
