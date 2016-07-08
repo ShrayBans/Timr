@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-	if('#checkbox').attr('checked',true) {
-		cenafy();
-		//WALK CODE
-	}
-
 	$('#siteInput').keyup(function(e){
 		if(e.keyCode == 13){
 	        $(this).trigger("enterKey");
@@ -14,7 +9,7 @@ $(document).ready(function(){
 
 	idUrlPairs = {};
 	storeArr = [];
-	
+
 	chrome.storage.local.get("storage", function(data){
 		for (var i = 0; i < data.storage.length; i++) {
 			storeArr.push(data.storage[i]);

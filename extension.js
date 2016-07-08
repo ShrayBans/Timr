@@ -7,15 +7,10 @@ var cenafy = function() {
     imgs[i].setAttribute('src', 'http://www.wwe.com/f/styles/og_image/public/2016/02/20060402_cena_hhh--bb9e5fd5167e751271682e5d62a904c2.jpg');
   }
 };
-$(document).ready(cenafy);
+// $(document).ready(cenafy());
 
 
 // word replacer extension
-walk(document.body);
-setTimeout(function () {
-	walk(document.body);
-}, 1000);
-
 function walk(node)
 {
 	// Source: http://is.gd/mwZp7E
@@ -53,4 +48,12 @@ function handleText(textNode)
   v = v.replace(/\bHacker\b/g, "slacker");
 
 	textNode.nodeValue = v;
+}
+
+if ($('#checkbox').attr('checked', true)) {
+  cenafy();
+  walk(document.body);
+  setTimeout(function () {
+    walk(document.body);
+  }, 1000);
 }
