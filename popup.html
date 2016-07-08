@@ -2,7 +2,10 @@
 <html>
 <head>
 	<title>Pomodoro Timer</title>
+	<link rel="stylesheet" href="index.css">
 	<style type="text/css">
+		
+		
 
 		body {
 			text-align: center;
@@ -80,8 +83,8 @@
 		.xButton {
 			position: absolute;
 			top:2px;
-			background-color: brown;
-			border: 1px solid brown;
+			background-color: #FD7765;
+			border: 1px solid #FD7765;
 			border-radius: 3px;
 			right: 20px;
 			height: 20px;
@@ -90,6 +93,8 @@
 			font-family: Avenir;
 			font-weight: 700;
 		}
+
+		
 
 		#timeSettings{
 			width:27%;
@@ -124,6 +129,32 @@
 			margin-top: -10px;
 		}
 
+		.xBut{
+			position: absolute;
+			top: 0px;
+			left: 3px;
+			font-size: 19px
+		}
+
+		#cancel{
+			background-color: #900026;
+			border: 1px solid #900026;
+			border-radius: 3px;
+			font-weight: 700;
+			color: #CA95A3;
+		}
+
+		#checkbox {
+			position: absolute;
+			bottom: 24px;
+			left: 5px;
+		}
+
+		#checkboxCont {
+			position: relative;
+			bottom:0;
+		}
+
 
 
 	</style>
@@ -152,8 +183,8 @@
 </div>
 
 
-<button id="timerButton" type="submit" align="center" disabled="true">Start Working!</button>
-<button id="breakButton" class="submit" align="center">Start Break!</button>
+<button id="timerButton" class="swing" type="submit" align="center" disabled="true">Start Working!</button>
+<button id="breakButton" class="submit opacity" align="center">Start Break!</button>
 				<div id="display" class="row-fluid" style="width: 90%; margin: auto">
             <div class="span12">
                 <div class="progress progress-striped active progress-success progress-large">
@@ -226,6 +257,10 @@
 
                     <div>&nbsp;</div>
                 </form>
+            </div>
+			<div id="checkboxCont">
+			<br/><br/><br/><br/><br/><br/><br/><br/>
+            	<input id="checkbox" type="checkbox" value="ludicrousCheck" checked>&nbsp;&nbsp;&nbsp;Ludicrous Mode
             </div>
         </div>
 
