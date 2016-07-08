@@ -1,9 +1,24 @@
 $(document).ready(function(){
 
-	if('#checkbox').attr('checked',true) {
-		cenafy();
-		//WALK CODE
-	}
+	
+	//finds last checked and makes it current
+	chrome.storage.local.get("checked", function(data){
+		console.log(data.checked);
+		$('#checkbox').prop('checked', data.checked);
+	});
+
+	//on checkbox click, it will store it as true/false
+	$('body').on('click', '#checkbox', function(){
+
+		if($('#checkbox').prop('checked')===true) {
+			// $('#checkbox').attr('checked', false);
+			chrome.storage.local.set({checked: true});
+		}
+		else {
+			// $('#checkbox').attr('checked', true);
+			chrome.storage.local.set({checked: false});
+		}
+	});
 
 	$('#siteInput').keyup(function(e){
 		if(e.keyCode == 13){
@@ -22,9 +37,9 @@ $(document).ready(function(){
 		}
 	});
 
-	$('body').on('hover', '.xButton', function(){
-		$(this).closest('.enteredSite').css("opacity", 0.5);
-	});
+	// $('body').on('hover', '.xButton', function(){
+	// 	$(this).closest('.enteredSite').css("opacity", 0.5);
+	// });
 
 	//adds a site if url is true (on enter)
 	$('#siteInput').bind("enterKey",function(e){
@@ -32,6 +47,8 @@ $(document).ready(function(){
   		// 	player.play();
 		// });
 
+
+		$('#checkbox').attr('checked', false);
 		var webInput = $(this).val();
 		// check if it is a url and
 		if(isURL(webInput)===true){
