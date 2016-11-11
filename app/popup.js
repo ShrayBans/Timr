@@ -95,7 +95,7 @@ function startBreaking() {
   hideSettings();
   show($modify);
 
-  reopenTabs(Object.keys(idUrlPairs));
+  reopenTabs(Object.keys(bg.idUrlPairs));
 
   // set break and begin countdown
   // should be set to 5-15 min depending on work time?
@@ -141,7 +141,10 @@ function reset() {
   hide($breakButton);
   show($timerButton);
 
-  if (bg.working === true) reopenTabs(Object.keys(idUrlPairs));
+  if (bg.working === true) {
+    console.log(bg.idUrlPairs);
+    reopenTabs(Object.keys(bg.idUrlPairs));
+  }
 
   // resets timeBar and stops timer
   clearTimeout(refreshDisplayTimeout);
