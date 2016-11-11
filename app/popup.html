@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pomodoro Timer</title>
+		<link rel="stylesheet" href="./index.css">
+		<link rel="stylesheet" href="./styles.css">
+		<script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="../lib/howler.min.js"></script>
+		<script type="text/javascript" src="./background/background.js"></script>
+		<script type="text/javascript" src="./background/timer.js"></script>
+		<script type="text/javascript" src="./main.js"></script>
+		<script type="text/javascript" src="./popup.js"></script>
+		<script type="text/javascript" src="./extension.js"></script>
+		<link href="../lib/bootstrap.min.css" rel="stylesheet" media="screen">
+		<!-- <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+		<script>
+		  SC.initialize({
+		    client_id: 'ssbansale'
+		    // redirect_uri: 'http://example.com/callback'
+		  });
+		  </script> -->
+
+	</head>
+	<body>
+
+		<h3><center> Enter links of distracting sites below: </center></h3>
+
+		<div id="siteContainer">
+			<input id="siteInput" type="text" value=""></input>
+		</div>
+
+		<button id="timerButton" class="swing" type="submit" align="center">Start Working!</button>
+		<button id="breakButton" class="submit opacity" align="center">Start Break!</button>
+
+		<div id="display" class="row-fluid" style="width: 90%; margin: auto">
+			<div class="span12">
+				<div class="progress progress-striped active progress-success progress-large">
+          <div class="bar" id="bar" style="width: 100%;"></div>
+        </div>
+    	</div>
+    </div>
+
+    <div id="modify" class="row-fluid">
+      <div class="span12">
+				<button id="cancel" class="submit" align="center">Give Up</button>
+					<!-- <button id="resume" class="submit" align="center">Resume</button>
+					<button id="pause" class="submit" align="center">Pause</button> -->
+      </div>
+    </div>
+
+		<button id="wrench" class="submit" align="center"></button>
+
+    <div id="settings" class="row-fluid">
+
+	    <div id="timeSettings">
+
+	      <h4>Time</h4>
+
+	      <form class="well" id="timeForm" name="timeChoices">
+					<!-- start dev only -->
+					<div class="radio">
+						<input type="radio" name="time" value="1">
+						<span>1</span>&nbsp;min
+					</div>
+					<!-- end dev only -->
+          <div class="radio">
+            <input type="radio" name="time" value="15">
+            <span>15</span>&nbsp;min
+					</div>
+          <div class="radio">
+            <input type="radio" name="time" value="25"  checked="checked">
+            <span>25</span>&nbsp;min
+					</div>
+          <div class="radio">
+            <input type="radio" name="time" value="45">
+            <span>45</span>&nbsp;min
+					</div>
+          <div class="radio">
+            <input type="radio" name="time" value="60">
+            <span>60</span>&nbsp;min
+					</div>
+	        <div>&nbsp;</div>
+	      </form>
+
+	    </div>
+
+	    <div id="musicSettings">
+
+	      <h4>Music Preferences</h4>
+
+				<form class="well" id="studyForm" name="studyChoices">
+					<span class="bolded">Study</span>
+						<div class="radio">
+							<input type="radio" name="study" value="none" checked="checked">
+							<span>No Music</span>
+						</div>
+						<div class="radio">
+							<input type="radio" name="study" value="spring">
+							<span>Spring Weather</span>
+						</div>
+            <div class="radio">
+              <input type="radio" name="study" value="alpha">
+              <span>Alpha Waves</span>
+						</div>
+            <div class="radio">
+              <input type="radio" name="study" value="classical">
+              <span>Classical Music</span>
+						</div>
+				</form>
+
+				<form class="well" id="breakForm" name="breakChoices">
+					<span class ="bolded">Break</span>
+            <div class="radio">
+              <input type="radio" name="break" value="party">
+              <span>Party Music</span>
+						</div>
+            <div class="radio">
+              <input type="radio" name="break" value="edm">
+              <span>EDM Music</span>
+						</div>
+						<div>&nbsp;</div>
+	      </form>
+
+	    </div>
+
+			<div id="ludicrousCheck">
+		    <input id="checkbox" type="checkbox" value="ludicrous" checked>&nbsp;&nbsp;&nbsp;Ludicrous Mode
+		  </div>
+		</div>
+
+		<br/><br/>
+
+	</body>
+</html>
