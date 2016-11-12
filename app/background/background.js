@@ -1,3 +1,5 @@
+// TODO: compare with extension Concentration
+
 var chrome;
 var sound;
 var urlArr;
@@ -5,8 +7,9 @@ var idUrlPairs = {};
 var notificationOpt = {
   type: 'basic',
   iconUrl: 'assets/icon.png',
-  title: 'Warning! Distracting website!',
-  message: 'Are you sure you want this open?'
+  title: 'Warning!',
+  message: "You've marked this as a distracting website. Are you sure you want it open?",
+  priority: 1
 };
 
 function playMusic(song) {
@@ -45,7 +48,8 @@ function checkTabAndNotify(url, id) {
         if (url.includes(urlArr[i])) {
           chrome.notifications.create('distraction', notificationOpt, function(id) {
             // this is firing, but no notificaton is showing up
-            console.log(id, chrome.runtime.lastError);
+            console.log('Notification sent, with an id of', "'" + id + ".'");
+            console.log('If error:', chrome.runtime.lastError);
           });
         }
       }
