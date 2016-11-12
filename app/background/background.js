@@ -1,4 +1,5 @@
 // TODO: compare with extension Concentration
+// get notifications working
 
 var chrome;
 var sound;
@@ -12,6 +13,8 @@ var notificationOpt = {
   priority: 1
 };
 
+// plays selected song from options
+// run in background script so it doesn't stop upon closing popup
 function playMusic(song) {
   if (song === 'none') return;
   var url = './../assets/' + song + '.mp3';
@@ -27,6 +30,7 @@ function stopMusic() {
   sound.stop();
 }
 
+// notification on timeDone
 function ding() {
   var alert = new Howl({
     urls: ['./assets/notify.mp3']
@@ -34,12 +38,14 @@ function ding() {
   alert.play();
 }
 
+// listens for new tabs, and if tab url is valid, runs checkTabAndNotify
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if (changeInfo.url !== undefined && working === true) {
     checkTabAndNotify(changeInfo.url, tab.id);
   }
 });
 
+// checks if url is a distraction site, and if so sends a notification
 function checkTabAndNotify(url, id) {
   chrome.storage.local.get('storage', function(urls) {
     if (urls.storage.length > 0) {
@@ -47,7 +53,6 @@ function checkTabAndNotify(url, id) {
       for (var i = 0; i < urlArr.length; i++) {
         if (url.includes(urlArr[i])) {
           chrome.notifications.create('distraction', notificationOpt, function(id) {
-            // this is firing, but no notificaton is showing up
             console.log('Notification sent, with an id of', "'" + id + ".'");
             console.log('If error:', chrome.runtime.lastError);
           });

@@ -1,4 +1,3 @@
-// purpose: buttons on popup responds to clicks and changes dynamically according to timer functions
 var $;
 var chrome;
 var bg = chrome.extension.getBackgroundPage();
@@ -14,6 +13,7 @@ var $modify = '#modify';
 var $wrench = '#wrench';
 var $timeBar = '#bar';
 
+// setup click handlers on page load
 $(document).ready(function() {
   load();
   $($timerButton).on('click', startWorking);
@@ -25,14 +25,18 @@ $(document).ready(function() {
   });
 });
 
+// general function for displaying a div
 function show($idString) {
   $($idString).css('display', 'block');
 }
 
+// general function for hiding a div
 function hide($idString) {
   $($idString).css('display', 'none');
 }
 
+// runs once every time popup is opened
+// depending on app state, different divs are loaded
 function load() {
   hideSettings();
   show($display);
@@ -56,6 +60,7 @@ function load() {
   }
 }
 
+// grabs selected options from DOM
 function getChoices() {
   // find selected time, return selected value
   var num;
@@ -69,9 +74,8 @@ function getChoices() {
   return [num, studyTune, breakTune];
 }
 
+// starts timer from chosen time options, hides BREAK and TIMER, shows GIVEUP
 function startWorking() {
-  // SET background timer for selected number
-  // HIDE settings, DISPLAY countdown
   hide($breakButton);
   hide($timerButton);
   show($modify);
@@ -80,7 +84,7 @@ function startWorking() {
   var num = getChoices()[0];
 
   // set timer and begin countdown
-  // change to 60000 for correct timing
+  // 60000 for production, 10000 for dev
   bg.startTimer(num * 60000);
   bg.playMusic(getChoices()[1]);
   refreshDisplay();
@@ -89,31 +93,36 @@ function startWorking() {
   hide($breakButton);
 }
 
+// starts break, hides BREAK, shows TIMER, shows GIVEUP
 function startBreaking() {
   hide($breakButton);
   show($timerButton);
   hideSettings();
   show($modify);
 
+  // reopens selected tabs for breaktime!
   reopenTabs(Object.keys(bg.idUrlPairs));
 
   // set break and begin countdown
-  // should be set to 5-15 min depending on work time?
+  // currently set to 5 min
   var num = 5;
   bg.startBreak(num * 60000);
   refreshDisplay();
 }
 
+// runs for timer display, and for DOM changes w/o a click event
 function refreshDisplay() {
   var percent = bg.getTimeLeftPercent();
   var timeLeft = bg.getTimeLeftString();
 
+  // if time is almost up, change display text from white to black
   if (percent < 15) {
     $($timeBar).css('color', 'black');
   } else {
     $($timeBar).css('color', 'white')
   }
 
+  // shows/hides buttons when time is up
   if (bg.timeDone === true && bg.working === true) {
     show($breakButton);
     bg.timeDone = false;
@@ -121,8 +130,11 @@ function refreshDisplay() {
     bg.timeDone = false;
   }
 
+  // this sets the display text
   $($timeBar).text(timeLeft);
   document.getElementById('bar').style.width = percent + '%';
+
+  // runs function at an interval for continuous updating
   refreshDisplayTimeout = setTimeout(refreshDisplay, 100);
 }
 
@@ -136,6 +148,7 @@ function hideSettings() {
   settingsShown = false;
 }
 
+// runs on GIVEUP, resets app to original load
 function reset() {
   hide($modify);
   hide($breakButton);
