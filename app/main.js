@@ -53,7 +53,7 @@ $(document).ready(function() {
 		removeSite(storeArr, webURL);
 		chrome.storage.local.set({ storage: storeArr });
 
-		// disables site if there are no urls, but people could just use this as timer
+		// disables timer if there are no urls, but people could just use this as timer
 		// if($('.enteredSite').length === 0) $('#timerButton').attr('disabled', true);
 	});
 

@@ -29,6 +29,6 @@
       "default_popup":"app/popup.html"
       },
 
-     "permissions": [ "tabs", "storage", "webRequest", "background", "webRequestBlocking" ]
+     "permissions": [ "tabs", "storage", "webRequest", "notifications", "background", "webRequestBlocking" ]
 
 }

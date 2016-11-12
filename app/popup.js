@@ -141,10 +141,7 @@ function reset() {
   hide($breakButton);
   show($timerButton);
 
-  if (bg.working === true) {
-    console.log(bg.idUrlPairs);
-    reopenTabs(Object.keys(bg.idUrlPairs));
-  }
+  if (bg.working === true) reopenTabs(Object.keys(bg.idUrlPairs));
 
   // resets timeBar and stops timer
   clearTimeout(refreshDisplayTimeout);

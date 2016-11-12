@@ -2,6 +2,12 @@ var chrome;
 var sound;
 var urlArr;
 var idUrlPairs = {};
+var notificationOpt = {
+  type: 'basic',
+  iconUrl: 'assets/icon.png',
+  title: 'Warning! Distracting website!',
+  message: 'Are you sure you want this open?'
+};
 
 function playMusic(song) {
   if (song === 'none') return;
@@ -27,20 +33,20 @@ function ding() {
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if (changeInfo.url !== undefined && working === true) {
-    checkAndRemoveTab(changeInfo.url, tab.id);
+    checkTabAndNotify(changeInfo.url, tab.id);
   }
 });
 
-// works, but
-// BUG: if checkAndRemove fires, idUrlPairs empties(?),
-// and desired tabs are not brought back up from startBreak or reset methods
-function checkAndRemoveTab(url, id) {
+function checkTabAndNotify(url, id) {
   chrome.storage.local.get('storage', function(urls) {
     if (urls.storage.length > 0) {
       urlArr = urls.storage;
       for (var i = 0; i < urlArr.length; i++) {
         if (url.includes(urlArr[i])) {
-          chrome.tabs.remove(id);
+          chrome.notifications.create('distraction', notificationOpt, function(id) {
+            // this is firing, but no notificaton is showing up
+            console.log(id, chrome.runtime.lastError);
+          });
         }
       }
     }
