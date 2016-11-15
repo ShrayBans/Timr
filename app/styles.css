@@ -1,0 +1,136 @@
+body {
+  text-align: center;
+  font-family: Impact;
+  font-size: 20pt;
+}
+
+button {
+  background-color: red;
+}
+
+#inputContainer{
+  margin:auto;
+  position: relative;
+}
+
+#siteInput {
+  right: 150px;
+  width: 200px;
+  border: 1px solid maroon;
+  border-radius: 2px;
+  margin: 0 50px 10px 50px;
+}
+
+#timerButton {
+  width: 200px;
+  border: 3px solid red;
+  border-radius: 3px;
+  font-size: 15pt;
+  font-family: Futura;
+  font-weight: 500;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+#breakButton {
+  width: 200px;
+  border: 3px solid red;
+  border-radius: 3px;
+  font-size: 15pt;
+  font-family: Futura;
+  font-weight: 500;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+#siteContainer {
+  margin: 0px 0px 20px 0px;
+  font-family: Garamond;
+  font-size: 14pt;
+  font-weight: 200;
+}
+
+#wrench {
+  width: 15px;
+  height: 15px;
+  background-image: url("../assets/settings.png");
+  background-size: 100%;
+}
+
+.enteredSite {
+  margin-top: 50px;
+  border: 1px solid #E8EAF1;
+  border-radius: 3px;
+  background-color: #F5F7FC;
+  width: 300px;
+  margin: auto;
+  position: relative;
+  height: 25px;
+  line-height: 25px;
+}
+
+.xButton {
+  position: absolute;
+  top:2px;
+  background-color: #FD7765;
+  border: 1px solid #FD7765;
+  border-radius: 3px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  font-family: Avenir;
+  font-weight: 700;
+}
+
+
+
+#timeSettings {
+  width:27%;
+  margin-top: 10px;
+  margin-right: 1%;
+  margin-left: 2%;
+  float:left;
+}
+
+#musicSettings {
+  width: 67%;
+  margin-top: 10px;
+  margin-left: 1%;
+  margin-right: 2%;
+  float:right;
+}
+
+.bolded {
+  font-weight: 700;
+}
+
+#timeForm {
+  padding: 10px;
+  /*z-index: 10;
+  position: abolute;*/
+}
+
+#studyForm {
+  padding: 10px;
+}
+
+#breakForm {
+  padding: 10px;
+  margin-top: -10px;
+}
+
+.xBut {
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  font-size: 19px
+}
+
+#cancel {
+  background-color: #900026;
+  border: 1px solid #900026;
+  border-radius: 3px;
+  font-weight: 700;
+  color: #CA95A3;
+}

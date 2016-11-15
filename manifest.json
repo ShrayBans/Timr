@@ -1,29 +1,34 @@
 {
    "name": "Functional Pomodoro Timer",
-   "description": "25 Minute Timer that closes distracting web pages when timer is up.",
+   "description": "A time management tool using the Pomodoro method to increase focus and efficiency, with a few extra features.",
    "version": "1.0",
    "manifest_version": 2,
 
    "content_scripts": [
      {
        "matches": ["<all_urls>"],
-       "js": ["jquery-2.2.4.min.js", "extension.js"]
+       "js": [
+         "lib/jquery-3.1.1.min.js",
+         "app/extension.js"
+       ]
      }
    ],
 
    "background": {
+     "persistent": true,
      "scripts": [
-       "background.js"
+       "lib/howler.min.js",
+       "app/background/background.js",
+       "app/background/timer.js"
      ]
    },
 
    "browser_action": {
-      "default_icon": "icon.png",
+      "default_icon": "assets/icon.png",
       "default_title": "Functional Pomodoro Timer",
-      "default_popup":"popup.html"
+      "default_popup":"app/popup.html"
       },
 
-     "permissions": [ "tabs", "storage", "webRequest", "background", "webRequestBlocking" ]
-
+     "permissions": [ "tabs", "storage", "webRequest", "notifications", "background", "webRequestBlocking" ]
 
 }
